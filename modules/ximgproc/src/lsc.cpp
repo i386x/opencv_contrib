@@ -730,6 +730,9 @@ inline void SuperpixelLSCImpl::PostEnforceLabelConnectivity( int threshold )
       int Label2 = -1;
 
       double MinDist = DBL_MAX;
+      // ensure that at least one iteration is performed
+      // (prevent centerW[-1])
+      CV_Assert( !(*S).Neighbor.empty() );
       for ( I = (*S).Neighbor.begin(); I != (*S).Neighbor.end(); I++ )
       {
         double D = 0.0f;
